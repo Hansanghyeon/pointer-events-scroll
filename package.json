@@ -1,0 +1,15 @@
+{
+  "name": "pointer-events-scroll",
+  "version": "1.0.0",
+  "description": "```html <body style=\"pointer-events: none\">   <!-- 이 요소 스크롤 가능하게 만드는 방법 -->   <div style=\"pointer-evnets: auto\"></div> </body> ```",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

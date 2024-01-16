@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pointer-events: none 내부에서 scroll 하기</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        container: {
+          padding: {
+            DEFAULT: '1rem',
+            sm: '1rem',
+            lg: '27px',
+            xl: '27px',
+            '2xl': '27px',
+          },
+          center: true
+        },
+      }
+    }
+  </script>
+  <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+<body 
+  x-data="{'isTest': false, toggle() {
+    this.isTest = !this.isTest
+  }}" 
+  class="h-[100dvh] flex items-center justify-center [&_*]:box-border"
+  style="pointer-events: none"
+>
+  <button type="button" class="fixed top-[20px] right-[20px] py-[8px] px-[16px] rounded-[8px] font-bold pointer-events-auto" :class="{'bg-gray-500 text-white': !isTest, 'bg-green-400': isTest}" x-on:click="toggle()">테스트시작</button>
+  <div class="container flex flex-col gap-y-[8px] justify-center items-center h-[80dvh] overflow-hidden">
+    <!-- ul에 point-events를 auto로 주어도 똑같다. -->
+    <ul x-data="{ colors: [
+      { id: 1 },
+      { id: 2 },
+      { id: 3 },
+      { id: 4 },
+      { id: 5 },
+      { id: 6 },
+      { id: 7 },
+      { id: 8 },
+      { id: 9 },
+      { id: 10 },
+    ]}" class="h-full overflow-y-auto border-[3px] border-transparent rounded-[8px]" :class="{'pointer-events-auto border-green-500': isTest}">
+      <template x-for="color in colors" :key="color.id">
+        <li>
+          <img x-bind:src="'https://picsum.photos/536/354?random=' + color.id" alt="" draggable="false">
+        </li>
+      </template>
+    </ul>
+    <div x-text="isTest ? '🙄 pointer-events: auto' : '🙄 pointer-events: inherit'"></div>
+  </div>
+</body>
+</html>
